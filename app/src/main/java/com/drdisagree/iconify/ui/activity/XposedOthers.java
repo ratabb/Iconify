@@ -10,7 +10,6 @@ import static com.drdisagree.iconify.common.References.QSPANEL_HIDE_CARRIER;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -47,6 +46,7 @@ public class XposedOthers extends AppCompatActivity {
         hide_qs_carrier_group.setChecked(RPrefs.getBoolean(QSPANEL_HIDE_CARRIER, false));
         hide_qs_carrier_group.setOnCheckedChangeListener((buttonView, isChecked) -> {
             RPrefs.putBoolean(QSPANEL_HIDE_CARRIER, isChecked);
+            new Handler().postDelayed(SystemUtil::doubleToggleDarkTheme, 200);
         });
 
         // Hide status icons
@@ -54,6 +54,7 @@ public class XposedOthers extends AppCompatActivity {
         hide_status_icons.setChecked(RPrefs.getBoolean(HIDE_STATUS_ICONS_SWITCH, false));
         hide_status_icons.setOnCheckedChangeListener((buttonView, isChecked) -> {
             RPrefs.putBoolean(HIDE_STATUS_ICONS_SWITCH, isChecked);
+            new Handler().postDelayed(SystemUtil::doubleToggleDarkTheme, 200);
         });
 
         // Fixed status icons
@@ -65,6 +66,8 @@ public class XposedOthers extends AppCompatActivity {
                 FabricatedOverlayUtil.disableOverlay("quickQsOffsetHeight");
             else if (RPrefs.getInt(FIXED_STATUS_ICONS_TOPMARGIN, 0) > 32)
                 FabricatedOverlayUtil.buildAndEnableOverlay(FRAMEWORK_PACKAGE, "quickQsOffsetHeight", "dimen", "quick_qs_offset_height", (48 + RPrefs.getInt(FIXED_STATUS_ICONS_TOPMARGIN, 0)) + "dp");
+
+            new Handler().postDelayed(SystemUtil::doubleToggleDarkTheme, 200);
         });
 
         // Status icons top margin
@@ -89,8 +92,9 @@ public class XposedOthers extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 RPrefs.putInt(FIXED_STATUS_ICONS_TOPMARGIN, topMarginStatusIcons[0]);
-                if (RPrefs.getBoolean(FIXED_STATUS_ICONS_SWITCH, false) && topMarginStatusIcons[0] > 32) {
+                if (RPrefs.getBoolean(FIXED_STATUS_ICONS_SWITCH, false)) {
                     FabricatedOverlayUtil.buildAndEnableOverlay(FRAMEWORK_PACKAGE, "quickQsOffsetHeight", "dimen", "quick_qs_offset_height", (48 + topMarginStatusIcons[0]) + "dp");
+                    new Handler().postDelayed(SystemUtil::doubleToggleDarkTheme, 200);
                 }
             }
         });
@@ -117,12 +121,11 @@ public class XposedOthers extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 RPrefs.putInt(FIXED_STATUS_ICONS_SIDEMARGIN, sideMarginStatusIcons[0]);
+                if (RPrefs.getBoolean(FIXED_STATUS_ICONS_SWITCH, false)) {
+                    new Handler().postDelayed(SystemUtil::doubleToggleDarkTheme, 200);
+                }
             }
         });
-
-        // Restart systemui
-        Button restart_sysui = findViewById(R.id.restart_sysui);
-        restart_sysui.setOnClickListener(v -> new Handler().postDelayed(SystemUtil::restartSystemUI, 200));
     }
 
     @Override

@@ -34,7 +34,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class HeaderImage extends ModPack implements IXposedHookLoadPackage {
 
-    private static final String TAG = "Iconify - HeaderImage: ";
+    private static final String TAG = "Iconify - XposedHeaderImage: ";
     boolean showHeaderImage = false;
     int imageHeight = 140;
     int headerImageAlpha = 100;
@@ -75,19 +75,19 @@ public class HeaderImage extends ModPack implements IXposedHookLoadPackage {
         XC_InitPackageResources.InitPackageResourcesParam ourResparam = resparams.get(SYSTEMUI_PACKAGE);
         if (ourResparam == null) return;
 
-        if (!showHeaderImage)
-            return;
-
         try {
-            ourResparam.res.setReplacement(SYSTEMUI_PACKAGE, "bool", "config_use_large_screen_shade_header", false);
-        } catch (Throwable ignored) {
-        }
+            if (showHeaderImage) try {
+                ourResparam.res.setReplacement(SYSTEMUI_PACKAGE, "bool", "config_use_large_screen_shade_header", false);
+            } catch (Throwable ignored) {
+            }
 
-        try {
             ourResparam.res.hookLayout(SYSTEMUI_PACKAGE, "layout", "quick_status_bar_expanded_header", new XC_LayoutInflated() {
                 @SuppressLint({"DiscouragedApi"})
                 @Override
                 public void handleLayoutInflated(XC_LayoutInflated.LayoutInflatedParam liparam) {
+                    if (!showHeaderImage)
+                        return;
+
                     @SuppressLint("DiscouragedApi") FrameLayout header = liparam.view.findViewById(liparam.res.getIdentifier("header", "id", SYSTEMUI_PACKAGE));
 
                     final ImageView headerImage = new ImageView(mContext);
@@ -102,19 +102,14 @@ public class HeaderImage extends ModPack implements IXposedHookLoadPackage {
                     headerImage.setAlpha((int) (headerImageAlpha / 100.0 * 255.0));
 
                     header.addView(headerImage, 0);
-
-                    log("Header image added successfully.");
                 }
             });
-        } catch (Throwable t) {
-            log(TAG + t);
+        } catch (Throwable ignored) {
         }
     }
 
-
     private void addOrRemoveProperty(View view, int property, boolean flag) {
-        RelativeLayout.LayoutParams layoutParams =
-                (RelativeLayout.LayoutParams) view.getLayoutParams();
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
         if (flag) {
             layoutParams.addRule(property);
         } else {
@@ -144,8 +139,7 @@ public class HeaderImage extends ModPack implements IXposedHookLoadPackage {
                 ((AnimatedImageDrawable) drawable).start();
             }
 
-        } catch (Exception e) {
-            log(TAG + e);
+        } catch (Throwable ignored) {
         }
     }
 }

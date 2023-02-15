@@ -13,7 +13,7 @@
     <string name="activity_desc_header_image">Добавить своё изображение на панель быстрых настроек</string>
     <string name="activity_desc_icon_pack">Поменять набор иконок системы</string>
     <string name="activity_desc_info">Информация о приложении</string>
-    <string name="activity_desc_lockscreen">Изменить элементы экрана блокировки</string>
+    <string name="activity_desc_lockscreen_clock">Изменить элементы экрана блокировки</string>
     <string name="activity_desc_media_player">Изменить внешний вид плеера</string>
     <string name="activity_desc_miscellaneous">Различные настройки и кастомизации</string>
     <string name="activity_desc_navigation_bar">Изменить опции навигации</string>
@@ -23,7 +23,7 @@
     <string name="activity_desc_statusbar">Модифицировать интерфейс статусбара</string>
     <string name="activity_desc_transparency_blur">Включить размытие и прозрачность панели быстрых настроек</string>
     <string name="activity_desc_ui_roundness">Изменить радиус углов интерфейса</string>
-    <string name="activity_desc_vertical_tiles">Включить вертикальные плитки быстрых настроек</string>
+    <string name="activity_desc_quick_settings">Трюки с быстрой настройкой</string>
     <string name="activity_desc_volume_panel">Изменить дизайн слайдера громкости</string>
     <string name="activity_desc_xposed_menu">Для этой опции необходим LSPosed</string>
     <string name="activity_desc_xposed_others">Другие LSposed настройки и кастомизации</string>
@@ -42,7 +42,7 @@
     <string name="activity_title_home_page">Iconify</string>
     <string name="activity_title_icon_pack">Набор иконок</string>
     <string name="activity_title_info">О приложении</string>
-    <string name="activity_title_lockscreen">Экран блокировки</string>
+    <string name="activity_title_lockscreen_clock">Экран блокировки</string>
     <string name="activity_title_media_player">Медиаплеер</string>
     <string name="activity_title_miscellaneous">Разное</string>
     <string name="activity_title_navigation_bar">Строка навигации</string>
@@ -54,7 +54,7 @@
     <string name="activity_title_statusbar">Статусбар</string>
     <string name="activity_title_transparency_blur">Прозрачность &amp; Размытие</string>
     <string name="activity_title_ui_roundness">Скругление углов интерфейса</string>
-    <string name="activity_title_vertical_tiles">Вертикальные плитки</string>
+    <string name="activity_title_quick_settings">Быстрые настройки</string>
     <string name="activity_title_volume_panel">Панель громкости</string>
     <string name="activity_title_xposed_menu">Меню XPosed</string>
     <string name="activity_title_xposed_others">Другое</string>
@@ -316,6 +316,7 @@
     <string name="toast_easter_egg">Как ты об этом догадался?</string>
     <string name="toast_easter_egg_activated">Почему ты продолжаешь это делать?</string>
     <string name="individual_changelog_not_found">Что-то пошло не так. Этот журнал изменений может быть не доступен на сервере.</string>
+    <string name="style_0">Никто</string>
     <string name="style_1">Стиль 1</string>
     <string name="style_2">Стиль 2</string>
     <string name="style_3">Стиль 3</string>

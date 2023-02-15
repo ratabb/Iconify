@@ -27,14 +27,14 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class BackgroundChip extends AppCompatActivity {
+public class XposedBackgroundChip extends AppCompatActivity {
 
     private FlexboxLayout containerStatusBar, containerStatusIcons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_background_chip);
+        setContentView(R.layout.activity_xposed_background_chip);
 
         // Header
         CollapsingToolbarLayout collapsing_toolbar = findViewById(R.id.collapsing_toolbar);
@@ -49,7 +49,6 @@ public class BackgroundChip extends AppCompatActivity {
         enable_clock_bg_chip.setChecked(RPrefs.getBoolean(STATUSBAR_CLOCKBG_SWITCH, false));
         enable_clock_bg_chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
             RPrefs.putBoolean(STATUSBAR_CLOCKBG_SWITCH, isChecked);
-            new Handler().postDelayed(SystemUtil::restartSystemUI, 200);
         });
 
         // Statusbar clock chip style
@@ -73,7 +72,7 @@ public class BackgroundChip extends AppCompatActivity {
             RPrefs.putBoolean(QSPANEL_STATUSICONSBG_SWITCH, isChecked);
             new Handler().postDelayed(() -> {
                 OverlayUtil.enableOverlay("IconifyComponentIXCC.overlay");
-                SystemUtil.restartSystemUI();
+                SystemUtil.doubleToggleDarkTheme();
             }, 200);
         });
 
@@ -144,6 +143,9 @@ public class BackgroundChip extends AppCompatActivity {
             list.setOnClickListener(v -> {
                 RPrefs.putInt(CHIP_QSSTATUSICONS_STYLE, finalI);
                 refreshBackgroundStatusIcons();
+                if (RPrefs.getBoolean(QSPANEL_STATUSICONSBG_SWITCH, false)) {
+                    new Handler().postDelayed(SystemUtil::doubleToggleDarkTheme, 200);
+                }
             });
 
             containerStatusIcons.addView(list);

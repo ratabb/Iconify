@@ -36,8 +36,8 @@
     <string name="activity_desc_miscellaneous">Miscellaneous tweaks and customization</string>
     <string name="activity_title_transparency_blur">Transparency &amp; Blur</string>
     <string name="activity_desc_transparency_blur">Enable QS blur and transparency</string>
-    <string name="activity_title_lockscreen">Lock Screen</string>
-    <string name="activity_desc_lockscreen">Customize lock screen items</string>
+    <string name="activity_title_lockscreen_clock">Lockscreen Clock</string>
+    <string name="activity_desc_lockscreen_clock">Add custom clock on lockscreen</string>
     <string name="activity_title_ui_roundness">UI Roundness</string>
     <string name="activity_desc_ui_roundness">Change corner radius of interface</string>
     <string name="activity_title_navigation_bar">Navigation Bar</string>
@@ -48,8 +48,8 @@
     <string name="activity_desc_header_clock">Add custom clock on QS panel</string>
     <string name="activity_title_background_chip">Background Chip</string>
     <string name="activity_desc_background_chip">Add colored chip behind clock</string>
-    <string name="activity_title_vertical_tiles">Vertical Tiles</string>
-    <string name="activity_desc_vertical_tiles">Enable vertical QS tiles</string>
+    <string name="activity_title_quick_settings">Quick Settings</string>
+    <string name="activity_desc_quick_settings">Tweaks related to QS panel</string>
     <string name="activity_title_colored_battery">Colored Battery</string>
     <string name="activity_desc_colored_battery">Change battery icon color</string>
     <string name="activity_title_xposed_others">Others</string>
@@ -66,9 +66,9 @@
     <string name="activity_desc_pixel_variant">For roms with black QS panel</string>
 
     <string name="apply_monet_accent_title">Monet Accent</string>
-    <string name="apply_monet_accent_desc">Link colors to monet accent</string>
+    <string name="apply_monet_accent_desc">Use system monet as accent</string>
     <string name="apply_monet_gradient_title">Monet Gradient</string>
-    <string name="apply_monet_gradient_desc">Link colors to monet gradient</string>
+    <string name="apply_monet_gradient_desc">Use system monet as gradient</string>
     <string name="color_picker_preview">Color Picker Preview</string>
     <string name="accurate_shades_title">Accurate Shades</string>
     <string name="accurate_shades_desc">Disable this to get exact choosen colors</string>
@@ -323,6 +323,7 @@
     <string name="toast_easter_egg">How did you know that?</string>
     <string name="toast_easter_egg_activated">Why are you still doing that?</string>
     <string name="individual_changelog_not_found">Something went wrong.\nThis changelog might not be available on the server.</string>
+    <string name="style_0">None</string>
     <string name="style_1">Style 1</string>
     <string name="style_2">Style 2</string>
     <string name="style_3">Style 3</string>
@@ -374,4 +375,6 @@
     <string name="icon_mask_style_teardrop">Teardrop</string>
     <string name="pick_style">Pick a style of your choice</string>
     <string name="info_contributor_desc_2">For assisting me on telegram.</string>
+    <string name="attention">Attention!</string>
+    <string name="lsposed_warn">Before enabling Iconify from LSPosed modules, long press on Iconify and click on Re-optimize. After that enable Iconify and restart your SystemUI. This is necessary for a smooth experience.</string>
 </resources>
