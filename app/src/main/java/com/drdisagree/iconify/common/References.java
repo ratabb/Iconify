@@ -16,7 +16,6 @@ public class References {
     public static final int TOTAL_NOTIFICATIONSPIXEL = Shell.cmd("cmd overlay list |  grep -E '^....IconifyComponentNFP' | sed -E 's/^....//'").exec().getOut().size();
     public static final int TOTAL_QSSHAPES = Shell.cmd("cmd overlay list |  grep -E '^....IconifyComponentQSSN' | sed -E 's/^....//'").exec().getOut().size();
     public static final int TOTAL_QSSHAPESPIXEL = Shell.cmd("cmd overlay list |  grep -E '^....IconifyComponentQSSP' | sed -E 's/^....//'").exec().getOut().size();
-    public static final int TOTAL_RADIUS = Shell.cmd("cmd overlay list |  grep -E '^....IconifyComponentCR' | sed -E 's/^....//'").exec().getOut().size();
     public static final int TOTAL_SETTINGSICONPACKS = Shell.cmd("cmd overlay list |  grep -E '^....IconifyComponentSIP' | sed -E 's/^....//'").exec().getOut().size();
     public static final int TOTAL_ICONSHAPES = Shell.cmd("cmd overlay list |  grep -E '^....IconifyComponentSIS' | sed -E 's/^....//'").exec().getOut().size();
 
@@ -111,6 +110,10 @@ public class References {
     public static final String MONET_BACKGROUND_LIGHTNESS = "monetBackgroundLightness";
     public static final String MONET_ACCURATE_SHADES = "monetAccurateShades";
     public static final String SHOW_XPOSED_WARN = "showXposedMenuWarn";
+    public static final String PORT_QSTILE_EXPANDED_HEIGHT = "portraitQsTileExpandedHeight";
+    public static final String PORT_QSTILE_NONEXPANDED_HEIGHT = "portraitQsTileNonExpandedHeight";
+    public static final String LAND_QSTILE_EXPANDED_HEIGHT = "landscapeQsTileExpandedHeight";
+    public static final String LAND_QSTILE_NONEXPANDED_HEIGHT = "landscapeQsTileNonExpandedHeight";
 
     // Fabricated overlays
     public static final String ICONIFY_COLOR_ACCENT_PRIMARY = "0xFF50A6D7";
@@ -121,7 +124,6 @@ public class References {
     public static final String FABRICATED_BATTERY_COLOR_FG = "batteryColorFilled";
     public static final String FABRICATED_QS_ROW = "qsRow";
     public static final String FABRICATED_QQS_ROW = "qqsRow";
-    public static final String FABRICATED_QQS_COLUMN = "qqsColumn";
     public static final String FABRICATED_QS_COLUMN = "qsColumn";
     public static final String FABRICATED_QQS_TILE = "qqsTile";
     public static final String FABRICATED_QS_TILE = "qsTile";
@@ -130,6 +132,7 @@ public class References {
     public static final String FABRICATED_QS_MOVE_ICON = "qsMoveIcon";
     public static final String FABRICATED_SB_LEFT_PADDING = "sbLeftPadding";
     public static final String FABRICATED_SB_RIGHT_PADDING = "sbRightPadding";
+    public static final String FABRICATED_SB_COLOR_SOURCE = "colorSBSource";
     public static final String FABRICATED_SB_COLOR_TINT = "colorSBTint";
     public static final String FABRICATED_QSPANEL_BLUR_RADIUS = "qsBlurRadius";
 

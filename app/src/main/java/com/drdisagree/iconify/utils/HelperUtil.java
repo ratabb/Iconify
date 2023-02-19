@@ -11,11 +11,15 @@ public class HelperUtil {
 
         backupFile(References.MODULE_DIR + "/common/system.prop");
         backupFile(References.OVERLAY_DIR + "/IconifyComponentME.apk");
+        backupFile(References.OVERLAY_DIR + "/IconifyComponentCR.apk");
+        backupFile(References.OVERLAY_DIR + "/IconifyComponentQSTH.apk");
     }
 
     public static void restoreFiles() {
-        restoreFile("IconifyComponentME.apk", References.OVERLAY_DIR);
         restoreFile("system.prop", References.MODULE_DIR + "/common");
+        restoreFile("IconifyComponentME.apk", References.OVERLAY_DIR);
+        restoreFile("IconifyComponentCR.apk", References.OVERLAY_DIR);
+        restoreFile("IconifyComponentQSTH.apk", References.OVERLAY_DIR);
         restoreBlurSettings();
 
         // Remove backup directory

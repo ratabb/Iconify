@@ -38,9 +38,9 @@ import com.drdisagree.iconify.R;
 import com.drdisagree.iconify.config.Prefs;
 import com.drdisagree.iconify.utils.ColorUtil;
 import com.drdisagree.iconify.utils.FabricatedOverlayUtil;
-import com.drdisagree.iconify.utils.MonetCompilerUtil;
 import com.drdisagree.iconify.utils.OverlayUtil;
 import com.drdisagree.iconify.utils.SystemUtil;
+import com.drdisagree.iconify.utils.compilerutil.MonetCompilerUtil;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
@@ -547,13 +547,23 @@ public class MonetEngine extends AppCompatActivity implements ColorPickerDialogL
                 "    <color name=\"primary_material_settings\">@*android:color/background_dark</color>\n");
         resources.append("</resources>\n");
 
-        return MonetCompilerUtil.buildMonetPalette(resources.toString());
+        return MonetCompilerUtil.buildOverlay(resources.toString());
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    private void disableBasicColors() {
+        Prefs.clearPref("customMonetColor");
+        Prefs.clearPref(CUSTOM_PRIMARY_COLOR_SWITCH);
+        Prefs.clearPref(CUSTOM_SECONDARY_COLOR_SWITCH);
+
+        FabricatedOverlayUtil.disableOverlay(COLOR_ACCENT_PRIMARY);
+        FabricatedOverlayUtil.disableOverlay(COLOR_PIXEL_DARK_BG);
+        FabricatedOverlayUtil.disableOverlay(COLOR_ACCENT_SECONDARY);
     }
 
     private final RadioGroup.OnCheckedChangeListener listener1 = new RadioGroup.OnCheckedChangeListener() {
@@ -585,13 +595,5 @@ public class MonetEngine extends AppCompatActivity implements ColorPickerDialogL
         }
     };
 
-    private void disableBasicColors() {
-        Prefs.clearPref("customMonetColor");
-        Prefs.clearPref(CUSTOM_PRIMARY_COLOR_SWITCH);
-        Prefs.clearPref(CUSTOM_SECONDARY_COLOR_SWITCH);
 
-        FabricatedOverlayUtil.disableOverlay(COLOR_ACCENT_PRIMARY);
-        FabricatedOverlayUtil.disableOverlay(COLOR_PIXEL_DARK_BG);
-        FabricatedOverlayUtil.disableOverlay(COLOR_ACCENT_SECONDARY);
-    }
 }

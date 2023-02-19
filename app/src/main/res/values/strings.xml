@@ -63,6 +63,8 @@
     <string name="activity_desc_icon_mask">Change system icon shapes</string>
     <string name="activity_title_pixel_variant">Pixel Variant</string>
     <string name="activity_desc_pixel_variant">For roms with black QS panel</string>
+    <string name="activity_title_qs_tile_size">QS Tile Size</string>
+    <string name="activity_desc_qs_tile_size">Change height of QS tile</string>
 
     <string name="apply_monet_accent_title">Monet Accent</string>
     <string name="apply_monet_accent_desc">Use system monet as accent</string>
@@ -300,7 +302,7 @@
     <string name="lockscreen_clock_white_text_desc">Force all colors to be white</string>
     <string name="window_level_blur_title">Window Level Blur</string>
     <string name="window_level_blur_desc">Requires reboot to work</string>
-    <string name="blur_radius_title">Blur Radius</string>
+    <string name="blur_intensity_title">Blur Intensity</string>
     <string name="force_enable_blur_title">Force Enable Blur</string>
     <string name="force_enable_blur_desc">Force enable blur for unsupported roms</string>
     <string name="hide_carrier_group_title">Hide Carrier Group</string>
@@ -378,4 +380,19 @@
     <string name="info_contributor_desc_2">For assisting me on telegram.</string>
     <string name="attention">Attention!</string>
     <string name="lsposed_warn">Before enabling Iconify from LSPosed modules, long press on Iconify and click on Re-optimize. After that enable Iconify and restart your SystemUI. This is necessary for a smoother experience.</string>
+    <string name="sb_tint_system">Default system tint</string>
+    <string name="sb_tint_monet">Monet tint</string>
+    <string name="sb_tint_custom">Custom tint</string>
+    <string name="init_module_installation">Initializing setup</string>
+    <string name="step">Step</string>
+    <string name="module_installation_step1">Creating module shell</string>
+    <string name="module_installation_step2">Extracting necessary files</string>
+    <string name="module_installation_step3">Creating overlay APKs</string>
+    <string name="module_installation_step4">Aligning overlay APKs</string>
+    <string name="module_installation_step5">Signing overlay APKs</string>
+    <string name="module_installation_step6">Cleaning temporary directories</string>
+    <string name="qs_tile_non_expanded_height">Non-Expanded Height</string>
+    <string name="portrait">(Portrait)</string>
+    <string name="qs_tile_expanded_height">Expanded Height</string>
+    <string name="landscape">(Landscape)</string>
 </resources>
