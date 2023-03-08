@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".ui.activity.XposedLockscreenClock">
+    tools:context=".ui.activities.XposedLockscreenClock">
 
     <include layout="@layout/view_header" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:orientation="vertical"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -61,61 +62,12 @@
 
                 <Switch
                     android:id="@+id/enable_lockscreen_clock"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center"
-                    android:thumb="@drawable/switch_thumb"
-                    android:track="@drawable/switch_track"
-                    tools:ignore="RtlHardcoded,UseSwitchCompatOrMaterialXml" />
+                    style="@style/customSwitch"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             </LinearLayout>
 
-            <View style="@style/divider_transparent"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/container_mid"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/container_paddingSide"
-                android:paddingTop="@dimen/container_padding"
-                android:paddingEnd="@dimen/container_paddingSide"
-                android:paddingBottom="@dimen/container_padding">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center"
-                    android:layout_marginEnd="@dimen/container_padding"
-                    android:layout_weight="1.0"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/custom_lockscreen_clock_style_title"
-                        android:textColor="@color/textColorPrimary"
-                        android:textSize="@dimen/cont_title_size"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/needs_systemui_restart"
-                        android:textColor="@color/textColorSecondary"
-                        android:textSize="@dimen/cont_desc_size" />
-
-                </LinearLayout>
-
-                <Spinner
-                    android:id="@+id/locksreen_clock_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center" />
-
-            </LinearLayout>
-
-            <View style="@style/divider_transparent"/>
+            <View style="@style/dividerTransparent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -127,24 +79,37 @@
                 android:paddingEnd="@dimen/container_paddingSide"
                 android:paddingBottom="@dimen/container_padding">
 
-                <Button
-                    android:id="@+id/apply_clock"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button"
-                    android:fontFamily="@font/semibold"
-                    android:letterSpacing="0.1"
-                    android:stateListAnimator="@null"
-                    android:text="@string/btn_apply"
-                    android:textColor="@color/colorBackground"
+                    android:text="@string/custom_lockscreen_clock_style_title"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/cont_title_size"
-                    android:textStyle="bold"
-                    app:backgroundTint="@null" />
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/needs_systemui_restart"
+                    android:textColor="@color/textColorSecondary"
+                    android:textSize="@dimen/cont_desc_size" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/lockscreen_clock_preview"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12dp" />
+
+                <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/lockscreen_clock_preview_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/container_margin"
+                    android:layout_gravity="center" />
 
             </LinearLayout>
 
-
-            <View style="@style/divider_transparent"/>
+            <View style="@style/dividerTransparent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -220,7 +185,7 @@
 
             </LinearLayout>
 
-            <View style="@style/divider_transparent"/>
+            <View style="@style/dividerTransparent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -258,22 +223,14 @@
 
                 <SeekBar
                     android:id="@+id/lsclock_lineheight_seekbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/container_padding"
-                    android:background="@null"
-                    android:hapticFeedbackEnabled="true"
+                    style="@style/customSeekBar"
                     android:max="120"
                     android:min="-120"
-                    android:progress="0"
-                    android:progressDrawable="@drawable/seekbar"
-                    android:splitTrack="false"
-                    android:theme="@style/SeekBar.Iconify"
-                    android:thumb="@drawable/seek_thumb" />
+                    android:progress="0" />
 
             </LinearLayout>
 
-            <View style="@style/divider_transparent"/>
+            <View style="@style/dividerTransparent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -311,22 +268,14 @@
 
                 <SeekBar
                     android:id="@+id/lsclock_textscaling_seekbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/container_padding"
-                    android:background="@null"
-                    android:hapticFeedbackEnabled="true"
+                    style="@style/customSeekBar"
                     android:max="15"
                     android:min="5"
-                    android:progress="10"
-                    android:progressDrawable="@drawable/seekbar"
-                    android:splitTrack="false"
-                    android:theme="@style/SeekBar.Iconify"
-                    android:thumb="@drawable/seek_thumb" />
+                    android:progress="10" />
 
             </LinearLayout>
 
-            <View style="@style/divider_transparent"/>
+            <View style="@style/dividerTransparent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -364,22 +313,14 @@
 
                 <SeekBar
                     android:id="@+id/lsclock_topmargin_seekbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/container_padding"
-                    android:background="@null"
-                    android:hapticFeedbackEnabled="true"
+                    style="@style/customSeekBar"
                     android:max="400"
                     android:min="0"
-                    android:progress="100"
-                    android:progressDrawable="@drawable/seekbar"
-                    android:splitTrack="false"
-                    android:theme="@style/SeekBar.Iconify"
-                    android:thumb="@drawable/seek_thumb" />
+                    android:progress="100" />
 
             </LinearLayout>
 
-            <View style="@style/divider_transparent"/>
+            <View style="@style/dividerTransparent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -417,22 +358,14 @@
 
                 <SeekBar
                     android:id="@+id/lsclock_bottommargin_seekbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/container_padding"
-                    android:background="@null"
-                    android:hapticFeedbackEnabled="true"
+                    style="@style/customSeekBar"
                     android:max="400"
                     android:min="0"
-                    android:progress="40"
-                    android:progressDrawable="@drawable/seekbar"
-                    android:splitTrack="false"
-                    android:theme="@style/SeekBar.Iconify"
-                    android:thumb="@drawable/seek_thumb" />
+                    android:progress="40" />
 
             </LinearLayout>
 
-            <View style="@style/divider_transparent"/>
+            <View style="@style/dividerTransparent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -471,16 +404,12 @@
 
                 <Switch
                     android:id="@+id/enable_force_white_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center"
-                    android:thumb="@drawable/switch_thumb"
-                    android:track="@drawable/switch_track"
-                    tools:ignore="RtlHardcoded,UseSwitchCompatOrMaterialXml" />
+                    style="@style/customSwitch"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             </LinearLayout>
 
-            <View style="@style/divider_transparent"/>
+            <View style="@style/dividerTransparent" />
 
             <LinearLayout
                 android:layout_width="match_parent"

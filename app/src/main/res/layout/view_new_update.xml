@@ -4,16 +4,13 @@
     android:id="@+id/check_update"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/container_marginSide"
-    android:layout_marginEnd="@dimen/container_marginSide"
     android:layout_marginBottom="@dimen/container_margin"
     android:background="@drawable/container_outline"
     android:orientation="horizontal"
     android:paddingStart="@dimen/container_paddingSide"
     android:paddingTop="@dimen/container_padding"
     android:paddingEnd="@dimen/container_paddingSide"
-    android:paddingBottom="@dimen/container_padding"
-    android:visibility="gone">
+    android:paddingBottom="@dimen/container_padding">
 
     <ImageView
         android:layout_width="48dp"

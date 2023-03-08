@@ -17,13 +17,13 @@ package com.drdisagree.iconify.xposed.mods;
  * along with this program.  If not, see [http://www.gnu.org/licenses/].
  */
 
-import static com.drdisagree.iconify.common.References.HEADER_IMAGE_HEIGHT;
-import static com.drdisagree.iconify.common.References.HEADER_IMAGE_SWITCH;
-import static com.drdisagree.iconify.common.References.HIDE_QSLABEL_SWITCH;
-import static com.drdisagree.iconify.common.References.PANEL_TOPMARGIN_SWITCH;
-import static com.drdisagree.iconify.common.References.QS_TOPMARGIN;
-import static com.drdisagree.iconify.common.References.SYSTEMUI_PACKAGE;
-import static com.drdisagree.iconify.common.References.VERTICAL_QSTILE_SWITCH;
+import static com.drdisagree.iconify.common.Const.SYSTEMUI_PACKAGE;
+import static com.drdisagree.iconify.common.Preferences.HEADER_IMAGE_HEIGHT;
+import static com.drdisagree.iconify.common.Preferences.HEADER_IMAGE_SWITCH;
+import static com.drdisagree.iconify.common.Preferences.HIDE_QSLABEL_SWITCH;
+import static com.drdisagree.iconify.common.Preferences.PANEL_TOPMARGIN_SWITCH;
+import static com.drdisagree.iconify.common.Preferences.QS_TOPMARGIN;
+import static com.drdisagree.iconify.common.Preferences.VERTICAL_QSTILE_SWITCH;
 import static com.drdisagree.iconify.config.XPrefs.Xprefs;
 import static com.drdisagree.iconify.xposed.HookRes.resparams;
 import static de.robv.android.xposed.XposedBridge.hookAllConstructors;
@@ -45,6 +45,8 @@ import android.widget.TextView;
 
 import com.drdisagree.iconify.xposed.ModPack;
 
+import java.util.Objects;
+
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -61,12 +63,10 @@ public class QuickSettings extends ModPack {
     boolean showHeaderImage = false;
     int headerImageHeight = 0;
     int qsTopMargin = 0;
-    private String rootPackagePath = "";
     private Object mParam = null;
 
     public QuickSettings(Context context) {
         super(context);
-        if (!listensTo(context.getPackageName())) return;
     }
 
     @Override
@@ -80,7 +80,8 @@ public class QuickSettings extends ModPack {
         isVerticalQSTileActive = Xprefs.getBoolean(VERTICAL_QSTILE_SWITCH, false);
         isHideLabelActive = Xprefs.getBoolean(HIDE_QSLABEL_SWITCH, false);
 
-        setPanelTopMargin();
+        if (Key.length > 0 && (Objects.equals(Key[0], PANEL_TOPMARGIN_SWITCH) || Objects.equals(Key[0], QS_TOPMARGIN) || Objects.equals(Key[0], HEADER_IMAGE_SWITCH) || Objects.equals(Key[0], HEADER_IMAGE_HEIGHT)))
+            setPanelTopMargin();
     }
 
     @Override
@@ -90,10 +91,7 @@ public class QuickSettings extends ModPack {
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) {
-        if (!lpparam.packageName.equals(SYSTEMUI_PACKAGE))
-            return;
-
-        rootPackagePath = lpparam.appInfo.sourceDir;
+        if (!lpparam.packageName.equals(SYSTEMUI_PACKAGE)) return;
 
         Class<?> QSTileViewImpl = findClass(CLASS_QSTILEVIEWIMPL, lpparam.classLoader);
         Class<?> FontSizeUtils = findClass(CLASS_FONTSIZEUTILS, lpparam.classLoader);
@@ -101,8 +99,7 @@ public class QuickSettings extends ModPack {
         hookAllMethods(QSTileViewImpl, "onConfigurationChanged", new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(XC_MethodHook.MethodHookParam param) {
-                if (!isVerticalQSTileActive)
-                    return;
+                if (!isVerticalQSTileActive) return;
 
                 fixTileLayout(((LinearLayout) param.thisObject), mParam);
             }
@@ -112,8 +109,7 @@ public class QuickSettings extends ModPack {
             @SuppressLint("DiscouragedApi")
             @Override
             protected void afterHookedMethod(MethodHookParam param) {
-                if (!isVerticalQSTileActive)
-                    return;
+                if (!isVerticalQSTileActive) return;
 
                 mParam = param.thisObject;
 
@@ -137,8 +133,7 @@ public class QuickSettings extends ModPack {
 
                     fixTileLayout(((LinearLayout) param.thisObject), mParam);
 
-                    if (!isHideLabelActive)
-                        ((LinearLayout) param.thisObject).addView(newQSTile);
+                    if (!isHideLabelActive) ((LinearLayout) param.thisObject).addView(newQSTile);
                 } catch (Throwable ignored) {
                 }
 
@@ -155,6 +150,8 @@ public class QuickSettings extends ModPack {
                 }
             }
         });
+
+        setPanelTopMargin();
     }
 
     private void fixTileLayout(LinearLayout tile, Object param) {
@@ -175,8 +172,7 @@ public class QuickSettings extends ModPack {
         XC_InitPackageResources.InitPackageResourcesParam ourResparam = resparams.get(SYSTEMUI_PACKAGE);
         if (ourResparam == null) return;
 
-        if (!enabledTopMargin)
-            return;
+        if (!enabledTopMargin) return;
 
         ourResparam.res.setReplacement(SYSTEMUI_PACKAGE, "dimen", "qs_panel_padding_top", new XResources.DimensionReplacement(showHeaderImage ? (headerImageHeight + qsTopMargin) : qsTopMargin, TypedValue.COMPLEX_UNIT_DIP));
         ourResparam.res.setReplacement(SYSTEMUI_PACKAGE, "dimen", "qqs_layout_margin_top", new XResources.DimensionReplacement(showHeaderImage ? (headerImageHeight + qsTopMargin) : qsTopMargin, TypedValue.COMPLEX_UNIT_DIP));

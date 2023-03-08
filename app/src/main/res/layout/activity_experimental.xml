@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".ui.activity.Experimental">
+    tools:context=".ui.activities.Experimental">
 
     <include layout="@layout/view_header" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:orientation="vertical"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -62,12 +63,8 @@
 
                 <Switch
                     android:id="@+id/enable_accurate_shades"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center"
-                    android:thumb="@drawable/switch_thumb"
-                    android:track="@drawable/switch_track"
-                    tools:ignore="RtlHardcoded,UseSwitchCompatOrMaterialXml" />
+                    style="@style/customSwitch"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             </LinearLayout>
         </LinearLayout>
